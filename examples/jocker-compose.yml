@@ -1,0 +1,19 @@
+services:
+  web:
+    expose:
+      - 8000:8000
+    environment:
+      - FOO: BAR
+    depends_on:
+      - redis
+    command:
+      python -m SimpleHTTPServer 8000
+
+  redis:
+    flavours:
+      - redis
+    volumes:
+      - redis_dir:/data
+
+volumes:
+  - redis_dir:
